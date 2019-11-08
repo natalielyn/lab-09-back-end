@@ -16,19 +16,14 @@ Go to city-explorer-code301.netlify.com and enter "http://localhost:3000" in the
 Architecture
 This is a Node.js server that uses express, dotenv, and cors packages. The server currently references two json data files in order to provide information to the client.
 
-Change Log
-11-08-2019 _____ AM - placeholder
 
-11-08-2019 _____ AM - placeholder
-
-11-08-2019 _____ AM - placeholder
 
 Credits and Collaborations
-Number and name of feature: Feature #1 ___________
-Estimate of time needed to complete:
-Start time:
-Finish time:
-Actual time needed to complete:
+Feature #1 Movies API
+Estimate of time needed to complete: 2 hours
+Start time: 8:30AM
+Finish time: 11:30AM
+Actual time needed to complete: 3 Hours
 
 Number and name of feature: Feature #2 ___________
 Estimate of time needed to complete:
