@@ -61,7 +61,7 @@ Location.fetchLocation = function (query){
       let location = new Location(query, result.body.results[0]);
       return location.save()
         .then( result => {
-          location.id = result.rows[0].id; //update, delete...etc...
+          location.id = result.rows[0].id; 
           return location;
         });
     });
