@@ -23,7 +23,7 @@ Feature #1 Movies API
 Estimate of time needed to complete: 2 hours
 Start time: 8:30AM
 Finish time: 11:30AM
-Actual time needed to complete: 3 Hours
+Actual time needed to complete: 3 hours
 
 Number and name of feature: Feature #2 ___________
 Estimate of time needed to complete:
