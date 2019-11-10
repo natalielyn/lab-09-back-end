@@ -30,25 +30,10 @@ app.get('/location', getLocation);
 app.get('/weather', getWeather);
 app.get('/movies', getMovies);
 
-//Constructor Functions -------------------------------
 
-function Location(query, data){
-  this.search_query = query;
-  this.formatted_query = data.formatted_address;
-  this.latitude = data.geometry.location.lat;
-  this.longitude = data.geometry.location.lng;
-}
 
-//Define a prototype function to save data to DB
-Location.prototype.save = function(){
-  const SQL = `INSERT INTO locations
-  (search_query, formatted_query, latitude, longitude)
-  VALUES ($1, $2, $3, $4)
-  RETURNING *`;
 
-  let values = Object.values(this);
-  return client.query(SQL, values);
-};
+
 
 //My Static Constructor Functions
 

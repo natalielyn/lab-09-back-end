@@ -30,3 +30,4 @@ released_on CHAR (10),
 created_at BIGINT,
 location_id INTEGER NOT NULL REFERENCES locations(id)
 );
+
