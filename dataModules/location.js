@@ -79,5 +79,5 @@ function getLocation(request,response) {
   Location.lookup(locationHandler);
 }
 
-// EXPORT LOCATION -----------------------------------
+// EXPORT LOCATION API -----------------------------------
 module.exports = getLocation;

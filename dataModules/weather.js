@@ -1,5 +1,5 @@
-
 'using strict';
+
 // DEPENDENCIES ------------------------------------
 const superagent = require('superagent');
 
