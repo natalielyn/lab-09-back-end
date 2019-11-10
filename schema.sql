@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS locations;
 DROP TABLE IF EXISTS weather;
 DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS yelp;
 
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
@@ -32,12 +33,11 @@ location_id INTEGER NOT NULL REFERENCES locations(id)
 );
 
 CREATE TABLE yelp (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    url VARCHAR(255),
-    price CHAR(5),
-    rating NUMERIC(2,1),
-    image_url VARCHAR(255),
-    created_at BIGINT,
-    location_id INTEGER NOT NULL REFERENCES locations(id)
-  );
+  id SERIAL PRIMARY KEY,
+  name VARCHAR (255),
+  page_url VARCHAR(255),
+  price VARCHAR(255),
+  rating REAL,
+  img_url VARCHAR(255),
+  location_id INTEGER NOT NULL REFERENCES locations(id)
+)
