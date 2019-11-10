@@ -1,4 +1,7 @@
 'use strict';
+//Todo Yelp functions
+//Todo Movie data to datbase;
+//Todo Deploy to Heroku
 
 require('dotenv').config();
 
