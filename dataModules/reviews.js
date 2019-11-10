@@ -16,9 +16,7 @@ function Yelp(review) {
 
 //GET YELP API -------------------------------------
 function getYelp(request,response) {
-  console.log('In yelp')
   const url = `https://api.yelp.com/v3/businesses/search?latitude=${request.query.data.latitude}&longitude=${request.query.data.longitude}`;
-
   return superagent
     .get(url)
     .set('Authorization', `Bearer ${process.env.YELP_API_KEY}`)
@@ -29,7 +27,7 @@ function getYelp(request,response) {
       response.status(200).json(yelpData);
     })
     .catch(() => response.status(500).send('So sorry, something went really wrong', request, response));
-}
+};
 
 
 
