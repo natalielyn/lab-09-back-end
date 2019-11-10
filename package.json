@@ -4,6 +4,7 @@
   "description": "Lab09 back-end: Advanced Topics",
   "main": "server.js",
   "dependencies": {
+    "connection": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

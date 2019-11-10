@@ -43,7 +43,7 @@ function Location(query, data){
 }
 
 //Define a prototype function to save data to DB
-Location.prototype.save = function(){
+Location.prototype.save = function(handler){
   const SQL = `INSERT INTO locations
   (search_query, formatted_query, latitude, longitude)
   VALUES ($1, $2, $3, $4)
@@ -141,12 +141,17 @@ function getWeather(request, response) {
 function getMovies(request, response) {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&page=1&include_adult=false&query=${request.query.data.search_query}`;
 
-  superagent.get(url).then(data => {
+  superagent.get(url)
+  .then(data => {
     const movies = data.body.results.map(movie => {
       const newMovie = new Movie(movie);
+      console.log('movies');
       return newMovie;
     });
     response.status(200).json(movies);
+  })
+  .catch( () =>{ 
+    error.handler('Whoops, the movie request went South', request, response)
   });
 }
 
