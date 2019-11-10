@@ -17,7 +17,7 @@ function Location(query, data){
   this.longitude = data.geometry.location.lng;
 };
 
-//Define a prototype function to save data to DB
+//SAVE DATA TO DATABASE ------------------------------
 Location.prototype.save = function(){
   const SQL = `INSERT INTO locations
   (search_query, formatted_query, latitude, longitude)
@@ -26,42 +26,6 @@ Location.prototype.save = function(){
 
   let values = Object.values(this);
   return client.query(SQL, values);
-};
-
-//FUNCTION TO QUERY DB / FETCH FROM API ------------
-function getLocation(request,response) {
-
-  const locationHandler = {
-    query: request.query.data,
-
-    cacheHit: (results) => {
-      console.log('Got data from DB');
-      response.send(results.rows[0]);
-    },
-
-    cacheMiss: () => {
-      console.log('No data in DB, fetching...');
-      Location.fetchLocation(request.query.data)
-        .then( data => response.send(data));
-    }
-  };
-  Location.lookup(locationHandler);
-}
-
-// LOCATION SQL LOOKUP
-Location.lookup = (handler) => {
-  const SQL = `SELECT * FROM locations WHERE search_query=$1`;
-  const values = [handler.query];
-
-  return client.query(SQL, values)
-    .then( results => {
-      if (results.rowCount > 0){
-        handler.cacheHit(results);
-      }else {
-        handler.cacheMiss();
-      }
-    })
-    .catch(console.error);
 };
 
 //GEOCODE API FETCH -----------------------------
@@ -80,5 +44,40 @@ Location.fetchLocation = function (query){
     });
 };
 
-// Export Location API Fetch
+// LOCATION SQL LOOKUP
+Location.lookup = (handler) => {
+  const SQL = `SELECT * FROM locations WHERE search_query=$1`;
+  const values = [handler.query];
+
+  return client.query(SQL, values)
+    .then( results => {
+      if (results.rowCount > 0){
+        handler.cacheHit(results);
+      }else {
+        handler.cacheMiss();
+      }
+    })
+    .catch(console.error);
+};
+
+//FUNCTION TO QUERY DB / FETCH FROM API ------------
+function getLocation(request,response) {
+  const locationHandler = {
+    query: request.query.data,
+
+    cacheHit: (results) => {
+      console.log('Got data from DB');
+      response.send(results.rows[0]);
+    },
+
+    cacheMiss: () => {
+      console.log('No data in DB, fetching...');
+      Location.fetchLocation(request.query.data)
+        .then( data => response.send(data));
+    }
+  };
+  Location.lookup(locationHandler);
+}
+
+// EXPORT LOCATION -----------------------------------
 module.exports = getLocation;
