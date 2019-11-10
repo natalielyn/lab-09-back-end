@@ -33,12 +33,6 @@ app.get('/movies', getMovies);
 
 
 
-
-function Weather(day) {
-  this.forecast = day.summary;
-  this.time = new Date(day.time * 1000).toString().slice(0,15);
-}
-
 //MOVIE CONSTRUCTOR FUNCTION
 function Movie(data) {
   this.title = data.title;
@@ -52,22 +46,6 @@ function Movie(data) {
 
 //Route Handlers
 
-
-function getWeather(request, response) {
-
-  const url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${request.query.data.latitude},${request.query.data.longitude}`;
-  superagent.get(url)
-    .then( data => {
-      const weatherSummaries = data.body.daily.data.map(day => {
-        return new Weather(day);
-      });
-      response.status(200).json(weatherSummaries);
-    })
-    .catch( ()=> {
-      errorHandler('So sorry, something went really wrong', request, response);
-    });
-
-}
 
 function getMovies(request, response) {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&page=1&include_adult=false&query=${request.query.data.search_query}`;
