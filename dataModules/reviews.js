@@ -15,7 +15,7 @@ function Yelp(review) {
 
 //GET YELP API -------------------------------------
 function getYelp(request,response) {
-  const url = `https://api.yelp.com/v3/businesses/search?latitude=${request.query.data.latitude}&longitude=${request.query.data.longitude}`;
+  const url = `https://api.yelp.com/v3/businesses/search?location=${location.search_query}`;
   return superagent
     .get(url)
     .set('Authorization', `Bearer ${process.env.YELP_API_KEY}`)
