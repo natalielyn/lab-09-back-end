@@ -1,7 +1,6 @@
 'use strict';
 
 // DEPENDENCIES ------------------------------------
-require('dotenv').config();
 const superagent = require('superagent');
 
 //YELP CONSTRUCTOR FUNCTION ------------------------
