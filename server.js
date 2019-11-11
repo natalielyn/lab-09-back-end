@@ -50,7 +50,18 @@ Location.prototype.save = function(handler){
   RETURNING *`;
 
   let values = Object.values(this);
+  console.log(values);
   return client.query(SQL, values);
+};
+
+//Define a prototype functionto save weather data to DB.
+Weather.prototype.save = function(handler){
+  const SQLweather = `INSERT INTO weather
+  (forcast, time)'
+  VALUES ($1, $2)
+  RETURNING *`;
+  let values = Object.values(this);
+  return client.query(SQLweather, values);
 };
 
 //My Static Constructor Functions
@@ -65,6 +76,8 @@ Location.fetchLocation = function (query){
       return location.save()
         .then( result => {
           location.id = result.rows[0].id; 
+          console.log(location);
+          console.log(location.latitude);
           return location;
         });
     });
@@ -110,6 +123,7 @@ function getLocation(request,response) {
 
     cacheHit: (results) => {
       console.log('Got data from DB');
+      console.log(request.query.data);
       response.send(results.rows[0]);
     },
 
